@@ -78,8 +78,6 @@ function Tile(props: TileProps) {
       }, 250)
     }
 
-    //Check if mouse is within the
-
     return () => clearTimeout(animationCloseTimer);
   }, [isOpen, shouldClose])
 
@@ -105,7 +103,7 @@ function Tile(props: TileProps) {
       //animation delay
       setTimeout(() => {
         setHoverAnimation({
-          animationName: type == "enter" ? newAnimationName : (newAnimationName + "-reverse"),
+          animationName: type === "enter" ? newAnimationName : (newAnimationName + "-reverse"),
           // animationDelay: ".1s",
           display: "block"
         })
@@ -130,7 +128,7 @@ function Tile(props: TileProps) {
       onMouseLeave={(e) => { if (isNext) setIsNext(undefined); if (isAnimating) startAnimation("exit", e) }}>
       <div className="card__image">
         <img src={"https://image.tmdb.org/t/p/w300" + (props.data.backdrop_path ? props.data.backdrop_path : props.data.poster_path)} alt="" />
-        <h1>{type == "movie" ? props.data.title : props.data.name}</h1>
+        <h1>{type === "movie" ? props.data.title : props.data.name}</h1>
       </div>
 
       <div className="card__preview" style={hoverAnimation} onMouseLeave={(e) => startAnimation("exit", e)}>
@@ -139,15 +137,10 @@ function Tile(props: TileProps) {
         <div className="card__preview__info">
           <div className="tile-buttons">
             <div>
-              {/* <Button type="play" shape="round" data={props.data} /> */}
               <PlayButton type="round" data={props.data} />
-              {/* <Button type="add" shape="round" data={props.data} /> */}
               <AddButton data={props.data} />
-
-              {/* <Button type="like" shape="round" data={props.data} /> */}
               <LikeButton data={props.data} />
             </div>
-            {/* <Button type="info" shape="round" data={props.data} /> */}
             <PreviewButton type={"round"} data={props.data} />
           </div>
           <div>

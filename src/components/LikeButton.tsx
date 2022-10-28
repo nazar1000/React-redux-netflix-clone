@@ -15,7 +15,7 @@ type LikeButtonProps = {
 function LikeButton(props: LikeButtonProps) {
   const dispatch = useAppDispatch();
 
-  const showType = props.data?.seasons ? "tv" : "movie";
+  const showType = props.data?.name ? "tv" : "movie";
   const likeStatus = useAppSelector((state) => getLikeStatus(props.data.id, showType, state))
 
   //Redux store update
@@ -35,7 +35,7 @@ function LikeButton(props: LikeButtonProps) {
         </div>
 
         {/* button dropdown*/}
-        <div className="like-dropdown">
+        <div className="like-dropdown" data-testid="like-dropdown">
           <div className="like-buttons" onClick={() => toggleLike(1)}>
             <div className="button-image" >
               <img src={likeStatus === 1 ? dislike_fill : dislike} alt="Dislike" />

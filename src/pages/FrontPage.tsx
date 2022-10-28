@@ -7,17 +7,13 @@ import NetflixMobile from "../icons/netflixmobile.png";
 import NetflixTv from "../icons/netflixtv.jpg";
 import NetflixChildren from "../icons/children.png";
 import NetflixAnywhere from "../icons/netflixanywhere.jpg";
-import { useAppDispatch } from "../app/hooks";
 
 function FrontPage() {
   const [toggleQuestionTabs, setQuestionTabs] = useState([false, false, false, false, false, false])
 
-  const dispatch = useAppDispatch();
-
-
   const updateQuestionTabs = (toggle: number) => {
     let tabStatus = toggleQuestionTabs.map((value: boolean, index: number) => {
-      if (index == toggle) return !toggleQuestionTabs[toggle]
+      if (index === toggle) return !toggleQuestionTabs[toggle]
       else return value;
     })
     setQuestionTabs(tabStatus);
@@ -28,13 +24,13 @@ function FrontPage() {
 
       <div className="nav">
         <div className="logo-div">
-          <img src={NetflixLogo} />
+          <img src={NetflixLogo} alt="Netflix logo" />
         </div>
         <button className="sign-button"><Link to="/login">Sign In</Link></button>
       </div>
 
       <div className="main-tile">
-        <img src={FrontPageBg}>
+        <img src={FrontPageBg} alt="">
         </img>
         <div className="info-div">
           <h2>Unlimited films, TV programmes and more.</h2>
@@ -54,7 +50,7 @@ function FrontPage() {
           <h2>Enjoy on your TV.</h2>
           <h3>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</h3>
         </div>
-        <div className="img-div"> <img src={NetflixTv}></img></div>
+        <div className="img-div"> <img src={NetflixTv} alt="" /></div>
       </div>
 
       <div className="tile">
@@ -62,7 +58,7 @@ function FrontPage() {
           <h2>Download your programmes to watch offline.</h2>
           <h3>Save your favorite easily and always have something to watch.</h3>
         </div>
-        <div className="img-div"> <img src={NetflixMobile}></img></div>
+        <div className="img-div"> <img src={NetflixMobile} alt="" /></div>
       </div>
 
       <div className="tile">
@@ -70,7 +66,7 @@ function FrontPage() {
           <h2>Watch everywhere.</h2>
           <h3>Stream unlimited films and TV programmes on your phone, tablet, laptop and TV without paying more.</h3>
         </div>
-        <div className="img-div"> <img src={NetflixAnywhere}></img></div>
+        <div className="img-div"> <img src={NetflixAnywhere} alt="" /></div>
       </div>
 
       <div className="tile">
@@ -78,7 +74,7 @@ function FrontPage() {
           <h2>Create profiles for children.</h2>
           <h3>Send children on adventures with their favorite characters in a space made just for them – free with your membership.</h3>
         </div>
-        <div className="img-div"> <img src={NetflixChildren}></img></div>
+        <div className="img-div"> <img src={NetflixChildren} alt="" /></div>
       </div>
 
       <div className="faq-tile">

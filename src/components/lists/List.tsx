@@ -81,7 +81,7 @@ const List = (props: ListProps) => {
   }
 
   return (
-    <div className="list" style={{ width: windowWidth }}>
+    <div className="list" style={{ width: windowWidth }} data-testid="named-lists">
       {props.loadID > props.id &&
         <>
           <div className="list__header">

@@ -59,8 +59,6 @@ export const forceTileClosed = (state: RootState) => state.global.forceTileClose
 // export const selectShowsInMyList = (state: RootState) => state.filter.myList;
 
 
-
-
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
 

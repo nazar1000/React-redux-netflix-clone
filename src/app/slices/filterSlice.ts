@@ -4,15 +4,6 @@ import { createAsyncThunk, createSlice, current, PayloadAction } from '@reduxjs/
 import { RootState, AppThunk } from '../store';
 // import { fetchCount } from './counterAPI';
 
-
-
-//Test filters.... Ehhh
-
-
-
-
-
-
 export interface ListState {
   filter: {
     filterType: "general" | "language", //view mode/BrowseByLang page

@@ -25,14 +25,14 @@ export const Tv_Shows = (props: Tv_ShowsProps) => {
       {!pageLoaded && <Loading />}
       {props.showsData.length > 0 &&
         <>
-          {viewMode == "full" &&
+          {viewMode === "full" &&
             <>
               <Highlight highlight={props.showsData[2][0][9]} />
               <ListDistributor showList={props.showsData} type="tv" updatePageLoaded={updatePageLoaded} />
             </>
           }
 
-          {viewMode == "tiles" &&
+          {viewMode === "tiles" &&
             <TiledList />
           }
         </>

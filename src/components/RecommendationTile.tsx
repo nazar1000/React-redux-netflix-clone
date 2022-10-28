@@ -1,5 +1,4 @@
 import "./recommendationTile.scss"
-import Button from "./Button"
 import AddButton from "./AddButton"
 
 

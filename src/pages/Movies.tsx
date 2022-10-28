@@ -26,14 +26,14 @@ const Movies = (props: MovieProps) => {
 
       {props.showsData.length > 0 &&
         <>
-          {viewMode == "full" &&
+          {viewMode === "full" &&
             <>
               <Highlight highlight={props.showsData[3][0][16]} />
               <ListDistributor showList={props.showsData} type="movies" updatePageLoaded={updatePageLoaded} />
             </>
           }
 
-          {viewMode == "tiles" &&
+          {viewMode === "tiles" &&
             <>
               <TiledList />
               {() => updatePageLoaded()}

@@ -27,7 +27,7 @@ function AddButton(props: AddButtonProps) {
       <button className="add-button--round" onClick={() => handleClick()}>
         <>
           <div className="button-image" >
-            <img src={isInMyList ? tick : add} alt={isInMyList ? "Add to my list" : "Remove from my list"} />
+            <img src={isInMyList ? tick : add} alt={isInMyList ? "Remove from my list" : "Add to my list"} />
           </div>
 
           {isInMyList && <span className="tool-tip-text">Remove From List</span>}

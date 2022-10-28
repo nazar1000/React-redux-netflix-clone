@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { sortData } from "./sortData";
 
 export const api_key = "?api_key=";
+
 export const mainUrl = "https://api.themoviedb.org/3/";
 
 const urlMainMovieGenres = `discover/movie${api_key}&with_genres=`;
@@ -78,6 +79,8 @@ const url = {
   ]
 }
 
+
+//Gets different types of lists to fill up different pages
 export const useAxiosAll = () => {
   const [load, setLoading] = useState(true);
   const [allData, setAllData] = useState<any>({})
@@ -100,7 +103,6 @@ export const useAxiosAll = () => {
       array.forEach(url => {
 
         let newUrl = mainUrl;
-
         if (index === 1) newUrl += urlMainMovieGenres + url[0];
         else if (index === 3) newUrl += urlMainTvGenre + url[0];
         else newUrl += url[0];
@@ -110,67 +112,58 @@ export const useAxiosAll = () => {
       })
     });
 
-    // let test = axios.get(url.movies.movieGenres.Action, config);
-    let movieLists = <any>[],
-      movieGenres = <any>[],
-      tvLists = <any>[],
-      tvGenres = <any>[],
-      genreLabels = <any>[],
-      searchList = <any>[];
+    // datalists
+    let movieLists: any[],
+      movieGenres: any[],
+      tvLists: any[],
+      tvGenres: any[],
+      genreLabels: any[],
+      searchList: any[];
 
+    let failedRequests: [string, any]
 
-    let failedRequests: [string, any];
+    //Getting results
+    await Promise.allSettled(requests).then((res) => {
 
-    await Promise.allSettled(requests)
-      .then((res) => {
+      //Adjusting the indexes in the next section in order to account for previous list, 
+      let no0 = showArrays[0].length;
+      let no1 = showArrays[1].length + no0;
+      let no2 = showArrays[2].length + no1;
+      let no3 = showArrays[3].length + no2;
+      let no4 = showArrays[4].length + no3;
+      console.log(res);
 
-        //Adjusting the indexes in the next section in order to account for previous list, 
-        let no0 = showArrays[0].length;
-        let no1 = showArrays[1].length + no0;
-        let no2 = showArrays[2].length + no1;
-        let no3 = showArrays[3].length + no2;
-        let no4 = showArrays[4].length + no3;
-        console.log(res);
+      res.forEach((result, index) => {
+        if (result.status === "fulfilled") {
+          let data = result.value.data.results;
 
-        res.forEach((result, index) => {
-          //Check if fulfilled
-          // console.log("You better work Axios...")
-          // console.log(no0, no4)
+          //filling up datalist
+          if (index < no0) movieLists = { ...movieLists, [nameList[index]]: data }
+          else if (index < no1) movieGenres.push(data)
+          else if (index < no2) tvLists = { ...tvLists, [nameList[index]]: data }
+          else if (index < no3) tvGenres.push(data)
+          else if (index < no4) genreLabels.push(result.value.data.genres)
 
-          // console.log(result)
-          if (result.status === "fulfilled") {
+          //Rejected
+        } else failedRequests.push([nameList[index], result.reason])
+      });
 
-            let data = result.value.data.results;
+      console.log(failedRequests)
 
-            if (index < no0) movieLists = { ...movieLists, [nameList[index]]: data }
-            else if (index < no1) movieGenres.push(data)
-            else if (index < no2) tvLists = { ...tvLists, [nameList[index]]: data }
-            else if (index < no3) tvGenres.push(data)
-            else if (index < no4) genreLabels.push(result.value.data.genres)
+      //sorting
+      //Changes the actual displayed data on the web
+      let { homePageData, tvPageData, moviePageData, popularPageData } = sortData({ movieLists, movieGenres, tvLists, tvGenres })
 
-            console.log("come on")
-            //Rejected
-          } else failedRequests.push([nameList[index], result.reason])
-        });
+      setLoading(false);
+      setAllData({ homePageData, tvPageData, moviePageData, popularPageData, genreLabels });
 
-        console.log("WTF")
-        console.log(failedRequests)
-
-        // console.log("about to sort....")
-
-        let { homePageData, tvPageData, moviePageData, popularPageData } = sortData({ movieLists, movieGenres, tvLists, tvGenres })
-
-        setLoading(false);
-        setAllData({ homePageData, tvPageData, moviePageData, popularPageData, genreLabels });
-
-      }).catch(errors => { })
+    }).catch(errors => { })
   }
 
   useEffect(() => {
     getData();
   }, [])
 
-  // console.log(allData)
   return { load, allData };
 }
 

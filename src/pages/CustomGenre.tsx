@@ -24,13 +24,13 @@ function CustomGenre() {
     <>
       {!pageLoaded && <Loading />}
 
-      {viewMode == "full" && genresData[0] !== undefined &&
+      {viewMode === "full" && genresData[0] !== undefined &&
         <>
           <Highlight highlight={genresData.length > 0 ? genresData[4] : {}} />
           <ListDistributor showList={genresData} type="genre" updatePageLoaded={updatePageLoaded} />
         </>
       }
-      {viewMode == "tiles" && <TiledList />}
+      {viewMode === "tiles" && <TiledList />}
     </>
   )
 }

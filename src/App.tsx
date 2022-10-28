@@ -28,7 +28,7 @@ function App() {
 
   //Sorts data
   useEffect(() => {
-    console.log(allData)
+    // console.log(allData)
   }, [allData])
 
   return (

@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react"
 import languages_list from "../helper/language_list";
 import { api_key, mainUrl } from "./useAxiosAll";
@@ -31,49 +31,28 @@ export const useAxiosFilter = (
   const [filteredResults, setFilteredResults] = useState<any>({})
 
   const getData = async () => {
-    let requestArr: (Promise<AxiosResponse<any, any>> | undefined)[] = [];
-    let responseName: string[];
 
     //general sort
     let sorting = `&sort_by=${type === "movie" ? sortTypesMovie[sort] : sortTypesTv[sort]}`
     let genreFilter = `&with_genres=${genre}`
-    // console.log(sort);
-
-    //Language sort
-    let lang = languages_list.filter((lang) => lang.name == language);
+    let lang = languages_list.filter((lang) => lang.name === language);
     let languageOption = `&language=${lang[0].code}`
     // let languageTypeOption; //No search criteria
 
     let showType = type === "movie" ? "discover/movie" : "discover/tv"
-    let page = "&page=" + (Math.floor(Math.random() * 5) + 1)
+    let page = "&page=" + 1//(Math.floor(Math.random() * 5) + 1)
     let url = mainUrl + showType + api_key + sorting + (genre === false ? "" : genreFilter) + languageOption + page;//Here I was
-    console.log(url);
-
-    // https://api.themoviedb.org/3/movie/610150?api_key=872ece6f49b1fd7eebe81f916bcf1fdb
+    // console.log(url);
 
 
-    const request1 = axios.get(url)
-    requestArr = [request1];
-    responseName = ["data"]
+    axios.get(url).then(val => {
+      setFilteredResults(val.data.results);
+      setLoading(false);
 
-    // console.log("Type", type);
-
-    await axios.all(requestArr)
-      .then(axios.spread((...responses) => {
-        // console.log(responseName, responses);
-        setFilteredResults(
-          responses[0]?.data.results,
-        );
-
-        setLoading(false);
-
-      })).catch(errors => {
-        // console.log("Error", errors)
-      })
+    }).catch(error => { })
   }
 
   useEffect(() => {
-    // console.log("reload")
     getData();
     setLoading(true);
   }, [filterType, sort, genre, type, language])

@@ -1,6 +1,5 @@
 import './highlight.scss';
 import React, { useState, useEffect } from "react"
-import Button from "../Button";
 import PlayButton from '../PlayButton';
 import PreviewButton from '../PreviewButton';
 
@@ -32,7 +31,7 @@ function Highlight(props: HighlighProps) {
   }
 
   return (
-    <div className="highlight-div">
+    <div className="highlight-div" data-testid="highlight">
       <div className="highlight-div__bg-div" style={highlightImage}>
         <div className="bg-div__filter"></div>
       </div>
@@ -48,9 +47,7 @@ function Highlight(props: HighlighProps) {
           <p>{props.highlight?.overview}</p>
         </div>
 
-        {/* <Button type="play" shape="text" data={props.highlight} text="Play" /> */}
         <PlayButton type="text" data={props.highlight} />
-        {/* <Button type="info" shape="text" data={props.highlight} text="More Info" /> */}
         <PreviewButton type="text" data={props.highlight} />
       </div>
     </div>

@@ -29,18 +29,11 @@ function Nav(props: { genres: any }) {
   const dispatch = useAppDispatch();
 
 
-  useEffect(() => {
-    console.log(location)
-    dispatch(setShowTileActive(false))
-  }, [location])
-
   const handleUpdate = (type: filterType, value: number | string) => {
     dispatch(updateFilter({ type: type, value: value }))
   }
+  const updateSearchValue = (value: string) => setSearchValue(value);
 
-  const updateSearchValue = (value: string) => {
-    setSearchValue(value);
-  }
 
   useEffect(() => {
     let search = document.getElementById("search-input");
@@ -53,8 +46,6 @@ function Nav(props: { genres: any }) {
 
 
   useEffect(() => {
-    {/* <Link to={`/genres/${genre.id}`}>{genre.name}</Link> */ }
-
     if (searchValue !== "") {
       navigate(`/search/${searchValue}`);
       if (!location.pathname.includes("search")) setLastLocation(location.pathname)
@@ -63,13 +54,17 @@ function Nav(props: { genres: any }) {
       navigate(lastLocation);
     }
 
-    // console.log(location)
+    // console.log)
   }, [searchValue])
+
 
   //Change status used to change bg of nav bar whenever user scrolls.
   useEffect(() => {
+    console.log(location)
+    dispatch(setShowTileActive(false)); //resets tile setting on page change
+
     //Setting navigation position based on the page]
-    if (location.pathname == "/tv" || location.pathname == "/movie") {
+    if (location.pathname === "/tv" || location.pathname === "/movie") {
       setHeaderPosition({ position: "absolute" })
     } else setHeaderPosition({ position: "fixed" })
 
@@ -80,7 +75,7 @@ function Nav(props: { genres: any }) {
         //     //settingBackground
         setScrolled(true);
 
-        if (location.pathname == "/tv" || location.pathname == "/movies") {
+        if (location.pathname === "/tv" || location.pathname === "/movies") {
           // console.log("In");
           if (window.scrollY >= 70) {
             setHeaderPosition({ position: "fixed", top: "-70px" })
@@ -135,12 +130,12 @@ function Nav(props: { genres: any }) {
                 <button className='mobile-menu-button'>Browse
                   <div className='mobile-menu-dropdown'>
                     <ul>
-                      <li className={location.pathname == "/browse" ? "mobile-nav-tab bold" : "mobile-nav-tab"}><Link to="/browse">Home</Link></li>
-                      <li className={location.pathname == "/tv" ? "mobile-nav-tab bold" : "mobile-nav-tab"} onClick={() => handleUpdate("type", "tv")}><Link to="/tv">Tv shows</Link></li>
-                      <li className={location.pathname == "/movies" ? "mobile-nav-tab bold" : "mobile-nav-tab"} onClick={() => handleUpdate("type", "movie")}><Link to="/movies">Movies</Link></li>
-                      <li className={location.pathname == "/new-popular" ? "mobile-nav-tab bold" : "mobile-nav-tab"}><Link to="/new-popular">New & Popular</Link></li>
-                      <li className={location.pathname == "/my-list" ? "mobile-nav-tab bold" : "mobile-nav-tab"}><Link to="/my-list">My List</Link></li>
-                      <li className={location.pathname == "/browse-by-language" ? "mobile-nav-tab bold" : "mobile-nav-tab"}><Link to="/browse-by-language">Browse By Language</Link></li>
+                      <li className={location.pathname === "/browse" ? "mobile-nav-tab bold" : "mobile-nav-tab"}><Link to="/browse">Home</Link></li>
+                      <li className={location.pathname === "/tv" ? "mobile-nav-tab bold" : "mobile-nav-tab"} onClick={() => handleUpdate("type", "tv")}><Link to="/tv">Tv shows</Link></li>
+                      <li className={location.pathname === "/movies" ? "mobile-nav-tab bold" : "mobile-nav-tab"} onClick={() => handleUpdate("type", "movie")}><Link to="/movies">Movies</Link></li>
+                      <li className={location.pathname === "/new-popular" ? "mobile-nav-tab bold" : "mobile-nav-tab"}><Link to="/new-popular">New & Popular</Link></li>
+                      <li className={location.pathname === "/my-list" ? "mobile-nav-tab bold" : "mobile-nav-tab"}><Link to="/my-list">My List</Link></li>
+                      <li className={location.pathname === "/browse-by-language" ? "mobile-nav-tab bold" : "mobile-nav-tab"}><Link to="/browse-by-language">Browse By Language</Link></li>
 
                     </ul>
                   </div>
@@ -148,12 +143,12 @@ function Nav(props: { genres: any }) {
 
               </li>
 
-              <li className={location.pathname == "/browse" ? "nav-tab bold" : "nav-tab"}><Link to="/browse">Home</Link></li>
-              <li className={location.pathname == "/tv" ? "nav-tab bold" : "nav-tab"} onClick={() => handleUpdate("type", "tv")}><Link to="/tv">Tv shows</Link></li>
-              <li className={location.pathname == "/movies" ? "nav-tab bold" : "nav-tab"} onClick={() => handleUpdate("type", "movie")}><Link to="/movies">Movies</Link></li>
-              <li className={location.pathname == "/new-popular" ? "nav-tab bold" : "nav-tab"}><Link to="/new-popular">New & Popular</Link></li>
-              <li className={location.pathname == "/my-list" ? "nav-tab bold" : "nav-tab"}><Link to="/my-list">My List</Link></li>
-              <li className={location.pathname == "/browse-by-language" ? "nav-tab bold" : "nav-tab"}><Link to="/browse-by-language">Browse By Language</Link></li>
+              <li className={location.pathname === "/browse" ? "nav-tab bold" : "nav-tab"}><Link to="/browse">Home</Link></li>
+              <li className={location.pathname === "/tv" ? "nav-tab bold" : "nav-tab"} onClick={() => handleUpdate("type", "tv")}><Link to="/tv">Tv shows</Link></li>
+              <li className={location.pathname === "/movies" ? "nav-tab bold" : "nav-tab"} onClick={() => handleUpdate("type", "movie")}><Link to="/movies">Movies</Link></li>
+              <li className={location.pathname === "/new-popular" ? "nav-tab bold" : "nav-tab"}><Link to="/new-popular">New & Popular</Link></li>
+              <li className={location.pathname === "/my-list" ? "nav-tab bold" : "nav-tab"}><Link to="/my-list">My List</Link></li>
+              <li className={location.pathname === "/browse-by-language" ? "nav-tab bold" : "nav-tab"}><Link to="/browse-by-language">Browse By Language</Link></li>
             </ul>
 
             <div className="secondary-navigation">
@@ -234,7 +229,7 @@ function Nav(props: { genres: any }) {
           }
 
 
-          {/* {location.pathname == "/tv" && <h1>This is TV</h1>} */}
+          {/* {location.pathname === "/tv" && <h1>This is TV</h1>} */}
         </div>
       </div>
       <Outlet />

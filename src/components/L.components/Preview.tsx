@@ -1,7 +1,6 @@
 import "./preview.scss"
 import EpisodeTile from "../EpisodeTile";
 import RecommendationTile from "../RecommendationTile";
-import Button from "../Button";
 
 import { useEffect, useState } from "react";
 import { useAxiosDetails } from "../../hooks/useAxiosDetails";
@@ -11,18 +10,9 @@ import PlayButton from "../PlayButton";
 import AddButton from "../AddButton";
 import LikeButton from "../LikeButton";
 
-type PreviewProps = {
-  // data: any | null,
-  // isShowing: boolean, // Preview showing status
-  // closePreview: Function //Closes preview,
-  // playThis: Function,
-  // addToList: Function,
-  // updateLike: Function,
-}
 
-function Preview(props: PreviewProps) {
-  // const [isShowing, setIsShowing] = useState(false);
-  // const isMovie = props?.data.first_air_date == undefined ? "movie" : "tv"; //Show type
+
+function Preview() {
   const previewMargin = window.scrollY;
 
   const previewData: any = useAppSelector(state => getPreviewData(state))
@@ -53,7 +43,7 @@ function Preview(props: PreviewProps) {
 
   const getDurationInfo = () => {
     //Movie time info
-    if (previewData.type == "movie") {
+    if (previewData.type === "movie") {
       let runtimeHr = Math.floor(Number(showDetails.details.runtime) / 60) + "h";
       let runtimeMin = Math.round((Number(showDetails.details.runtime) / 60) % 1 * 60) + "m";
       let year = new Date(showDetails.details.release_date).getFullYear();
@@ -73,13 +63,10 @@ function Preview(props: PreviewProps) {
                   <img src={"https://image.tmdb.org/t/p/original" + (showDetails.details.backdrop_path ? showDetails.details.backdrop_path : showDetails.details.poster_path)}></img>
                   <div className="close-button" onClick={() => closeThis()}></div>
                   <div className="bg__buttons">
-                    <h1>{previewData.type == "movie" ? showDetails.details.original_title : showDetails.details.original_name}</h1>
+                    <h1>{previewData.type === "movie" ? showDetails.details.original_title : showDetails.details.original_name}</h1>
                     <div className="preview-options">
-                      {/* <Button type="play" shape="text" data={previewData} text="Play" /> */}
                       <PlayButton type="text" data={previewData} />
-                      {/* <Button type="add" shape="round" data={previewData} /> */}
                       <AddButton data={previewData} />
-                      {/* <Button type="like" shape="round" data={previewData} /> */}
                       <LikeButton data={previewData} />
 
                     </div>
@@ -115,7 +102,7 @@ function Preview(props: PreviewProps) {
                     {/* </div> */}
                   </div>
 
-                  {previewData.type == "tv" &&
+                  {previewData.type === "tv" &&
                     <>
                       {console.log(previewData.type, showDetails, seasonButtonIndex)}
                       <div className="episodes-container">
@@ -157,7 +144,7 @@ function Preview(props: PreviewProps) {
                           <RecommendationTile key={show.id}
                             img={"https://image.tmdb.org/t/p/w200" + show.backdrop_path ? show.backdrop_path : show.poster_path}
                             // yearReleased={previewData.type ? new Date(show.release_date).getFullYear() : show.first_air_date.slice(0,4)}
-                            yearReleased={previewData.type == "movie" ? show.release_date.slice(0, 4) : show.first_air_date.slice(0, 4)}
+                            yearReleased={previewData.type === "movie" ? show.release_date.slice(0, 4) : show.first_air_date.slice(0, 4)}
                             description={show.overview} data={show}
                           // onClick={props.playThis(show)}
                           />

@@ -1,6 +1,6 @@
 import "./button.scss"
 import info from "../icons/info.png";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { useAppDispatch } from "../app/hooks";
 import { setPreviewData } from "../app/slices/globalSlice";
 
 type PreviewButtonProps = {

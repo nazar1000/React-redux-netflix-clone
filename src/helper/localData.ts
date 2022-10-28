@@ -3,7 +3,7 @@
 
 //Used as alternative to sending requests for debug
 
-const localData1 = {
+export const localData1 = {
   "homePageData": <any[]>[
     [
       [

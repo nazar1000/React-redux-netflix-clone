@@ -1,6 +1,7 @@
 
 //Used in combination with useAxiosAll hook
 
+//Un-highlight selections to show on the page.
 export const sortData = (data: any) => {
   let homePageData = [
     [data.tvLists.popular, "Popular Tv Shows"],

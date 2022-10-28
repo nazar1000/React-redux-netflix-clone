@@ -1,7 +1,7 @@
 
 
-import { createAsyncThunk, createSlice, current, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../store';
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 
 export interface ListState {

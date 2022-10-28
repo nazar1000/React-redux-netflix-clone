@@ -19,8 +19,8 @@ const tvGenres = [
 
 export const getGenreName = (id: number, type: "tv" | "movie"): string => {
   let element;
-  if (type == "movie") element = movieGenres.find((element) => element.id === id);
-  else element = tvGenres.find((element) => element.id == id);
+  if (type === "movie") element = movieGenres.find((element) => element.id === id);
+  else element = tvGenres.find((element) => element.id === id);
 
   if (element?.name) return element.name;
   else return "" + id;

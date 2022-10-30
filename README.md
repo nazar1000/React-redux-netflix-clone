@@ -21,13 +21,6 @@ Dependencies :
 - "typescript": "^4.8.4",
 - "sass": "^1.54.4",
 
-## About the project
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-
-
 
 ## Project structure
 

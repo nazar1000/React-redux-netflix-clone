@@ -54,6 +54,9 @@ function Tile(props: TileProps) {
   //When closing animation, delay and status change
   useEffect(() => {
     let animationCloseTimer: ReturnType<typeof setTimeout>;
+    if (!isOpen && !isAnimating && shouldClose) {
+      setShouldClose(false);
+    }
 
     if (shouldClose && isOpen) {
 
@@ -83,7 +86,6 @@ function Tile(props: TileProps) {
 
 
   const startAnimation = (type: "enter" | "exit", event: any): void => {
-    //
     if (type === "enter" && isTileActive && (!isAnimating && !isOpen)) dispatch(setForceTileClosed(true))
 
     if (type === "exit" && (isAnimating || isOpen)) setShouldClose(true); // If on mouse out trigger

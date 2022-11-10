@@ -28,10 +28,10 @@ function LikeButton(props: LikeButtonProps) {
       <button className="like-button--round" >
         <div className="button-image">
           {/* Like status */}
-          {likeStatus === 0 && <img src={like} />}
-          {likeStatus === 1 && <img src={dislike_fill} />}
-          {likeStatus === 2 && <img src={like_fill} />}
-          {likeStatus === 3 && <img src={likePlus_fill} />}
+          {likeStatus === 0 && <img src={like} alt="rating neutral" />}
+          {likeStatus === 1 && <img src={dislike_fill} alt="rating disliked" />}
+          {likeStatus === 2 && <img src={like_fill} alt="rating Liked" />}
+          {likeStatus === 3 && <img src={likePlus_fill} alt="rating very liked" />}
         </div>
 
         {/* button dropdown*/}

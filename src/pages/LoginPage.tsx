@@ -13,10 +13,10 @@ function LoginPage() {
 
   return (
     <div className="login-page-container">
-      <img className="bg-image" src={FrontPageBg} />
+      <img className="bg-image" src={FrontPageBg} alt="" />
       <div className="content">
         <div className="logo">
-          <img src={netflix_logo} />
+          <img src={netflix_logo} alt="logo" />
         </div>
 
         <div className="sign-in-div">
@@ -40,7 +40,7 @@ function LoginPage() {
           <div className="new-to-netflix-div">
 
             <span>New to Netflix? <a href="http://localhost:3000/">Sign up Now.</a></span>
-            <p>This page is protected by Google reCAPTCHA to ensure you're not bot. <a>Learn more.</a></p>
+            <p>This page is protected by Google reCAPTCHA to ensure you're not bot. <a href="#">Learn more.</a></p>
           </div>
         </div>
       </div>

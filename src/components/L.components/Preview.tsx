@@ -60,7 +60,7 @@ function Preview() {
             {!loading &&
               <>
                 <div className="bg-image">
-                  <img src={"https://image.tmdb.org/t/p/original" + (showDetails.details.backdrop_path ? showDetails.details.backdrop_path : showDetails.details.poster_path)}></img>
+                  <img src={"https://image.tmdb.org/t/p/original" + (showDetails.details.backdrop_path ? showDetails.details.backdrop_path : showDetails.details.poster_path)} alt=""></img>
                   <div className="close-button" onClick={() => closeThis()}></div>
                   <div className="bg__buttons">
                     <h1>{previewData.type === "movie" ? showDetails.details.original_title : showDetails.details.original_name}</h1>
@@ -104,7 +104,7 @@ function Preview() {
 
                   {previewData.type === "tv" &&
                     <>
-                      {console.log(previewData.type, showDetails, seasonButtonIndex)}
+                      {/* {console.log(previewData.type, showDetails, seasonButtonIndex)} */}
                       <div className="episodes-container">
                         <div className="legend">
                           <h2>Episodes </h2>

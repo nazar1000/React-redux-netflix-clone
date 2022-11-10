@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { sortData } from "./sortData";
 
-export const api_key = "?api_key=";
+export const api_key = "?api_key=872ece6f49b1fd7eebe81f916bcf1fdb";
 
 export const mainUrl = "https://api.themoviedb.org/3/";
 

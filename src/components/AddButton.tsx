@@ -2,8 +2,7 @@ import "./button.scss"
 import add from "../icons/add.png";
 import tick from "../icons/tick.png";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { addToMyList, checkIfInMyList, getLikeStatus, setLikeStatus } from "../app/slices/myListSlice";
-import { useEffect } from "react";
+import { addToMyList, checkIfInMyList } from "../app/slices/myListSlice";
 
 
 //Add to my list button

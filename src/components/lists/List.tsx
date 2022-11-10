@@ -90,7 +90,7 @@ const List = (props: ListProps) => {
 
               {props.exploreAllLink !== undefined &&
                 <div className="expanding-link" onClick={() => navigate(`list/${props.exploreAllLink}`)}>
-                  <a>Explore All</a>
+                  <a href={`list/${props.exploreAllLink}`}>Explore All</a>
                   <div id="title-arrow" className="title-arrow"></div>
                 </div>
               }
@@ -109,7 +109,7 @@ const List = (props: ListProps) => {
                 <div className="arrow"></div>
               </div>
 
-              {props.showList != undefined && props.loadID >= props.id && props.showList.map((show: any, index: number) => {
+              {props.showList !== undefined && props.loadID >= props.id && props.showList.map((show: any, index: number) => {
                 if (index > 12) return;
                 return (
                   <Tile key={show.id}

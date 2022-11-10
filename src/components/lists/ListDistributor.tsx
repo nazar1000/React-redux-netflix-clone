@@ -34,7 +34,7 @@ function ListDistributor(props: ListDistributorProps) {
   // console.log(props)
 
   return (
-    <div className={props.type != "new & popular" ? "named-list__with-highlight" : "named-list__without-highlight"}>
+    <div className={props.type !== "new & popular" ? "named-list__with-highlight" : "named-list__without-highlight"}>
       {props.type === "home" && props.showList && props.showList.map((show: any, index: number) => {
 
         return <List key={index} listName={props?.showList[index][1]} showList={show[0]} id={index} loadID={idCounter} exploreAllLink={index} />

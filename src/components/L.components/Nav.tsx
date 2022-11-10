@@ -60,7 +60,7 @@ function Nav(props: { genres: any }) {
 
   //Change status used to change bg of nav bar whenever user scrolls.
   useEffect(() => {
-    console.log(location)
+    // console.log(location)
     dispatch(setShowTileActive(false)); //resets tile setting on page change
 
     //Setting navigation position based on the page]
@@ -122,7 +122,7 @@ function Nav(props: { genres: any }) {
           <div className={scrolled ? 'menu-navigation nav-bg' : 'menu-navigation'}>
 
             <div className='logo'>
-              <img src={netflix_logo}></img>
+              <img src={netflix_logo} alt="logo"></img>
             </div>
 
             <ul className="primary-navigation">

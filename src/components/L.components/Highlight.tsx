@@ -9,18 +9,18 @@ type HighlighProps = {
 }
 
 function Highlight(props: HighlighProps) {
-  const [highlightImage, setHighlightImage] = useState<React.CSSProperties>({ backgroundImage: "none" })
+  const [imageHeight, setImageHeight] = useState<React.CSSProperties>({})
 
   useEffect(() => {
-    // console.log(props.highlight)
-    setHighlightImage({
-      backgroundImage: `url(` + getImage() + `),linear-gradient(180deg, #156ad300 80%, #141414)`,
-    })
-  }, [props.highlight])
+    const resize = () => updateImageHeight();
+
+    window.addEventListener("resize", () => resize())
+    return window.removeEventListener("resize", () => resize)
+  }, [])
+
 
   // console.log(props.highlight)
   const getImage = (): string => {
-
     let url = "https://image.tmdb.org/t/p/original";
     let imgUrl;
     if (props.highlight.backdrop_path) imgUrl = props.highlight.backdrop_path;
@@ -30,11 +30,23 @@ function Highlight(props: HighlighProps) {
     return url + imgUrl;
   }
 
+  const updateImageHeight = () => {
+    let imgElement = document.getElementById("highlight-image") as HTMLImageElement;
+
+    // if (imgElement !== undefined) {
+    if (imgElement.height >= window.innerHeight) setImageHeight({ height: window.innerHeight * 0.85 })
+    else if (imgElement.height < window.innerHeight) setImageHeight({ height: imgElement.height * 0.85 })
+    // }
+  }
+
   return (
-    <div className="highlight-div" data-testid="highlight">
-      <div className="highlight-div__bg-div" style={highlightImage}>
+    <div className="highlight-div" data-testid="highlight" style={imageHeight}>
+      <div className='highlight__image-div'>
+        <img id="highlight-image" src={"https://image.tmdb.org/t/p/original" + getImage()} onLoad={(e) => updateImageHeight()}>
+        </img>
         <div className="bg-div__filter"></div>
       </div>
+
 
       <div className="highlight__info-div">
 

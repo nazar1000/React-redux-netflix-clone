@@ -15,8 +15,8 @@ function RecommendationTile(props: RecommendationTileProps) {
   return (
     <div className="recommendation-tile">
       <div className="img-container">
-        <img src={"https://image.tmdb.org/t/p/w300" + props.img}></img>
-        <h3></h3>
+        <img src={"https://image.tmdb.org/t/p/w300" + props.img} alt=""></img>
+        {/* <h3></h3> */}
       </div>
       <div className="recommendation-content">
         <div className="legend">

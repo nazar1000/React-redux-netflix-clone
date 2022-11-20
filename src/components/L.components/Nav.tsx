@@ -1,7 +1,7 @@
 import './nav.scss'
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import netflix_logo from '../../icons/netflixLogo.png'
+import Nclone_logo from '../../icons/netflixLogo1.png'
 import bell from '../../icons/bell.png'
 import left_alight from '../../icons/left_alight.png'
 import pen from '../../icons/pen.png'
@@ -122,7 +122,7 @@ function Nav(props: { genres: any }) {
           <div className={scrolled ? 'menu-navigation nav-bg' : 'menu-navigation'}>
 
             <div className='logo'>
-              <img src={netflix_logo} alt="logo"></img>
+              <img src={Nclone_logo} alt="logo"></img>
             </div>
 
             <ul className="primary-navigation">
@@ -209,7 +209,7 @@ function Nav(props: { genres: any }) {
                         <li>
                           <div className="tab">
 
-                            <a id='sign-out-button'>Sign out of Netflix</a>
+                            <a id='sign-out-button'>Sign out of Nclone</a>
                           </div>
                         </li>
                       </ul>

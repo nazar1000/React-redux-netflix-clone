@@ -22,9 +22,10 @@ import { isPreviewShowing } from './app/slices/globalSlice';
 
 function App() {
 
-  // const { load, allData } = useAxiosLol(); // homePageData, tvPageData, moviePageData, popularPageData
+  // const { load, allData } = useAxiosAll(); // homePageData, tvPageData, moviePageData, popularPageData
   const [allData, setAllData] = useState(localData); // homePageData, tvPageData, moviePageData, popularPageData
   const previewIsOpen = useAppSelector(state => isPreviewShowing(state))
+  const [isUserInfo, setUserInfo] = useState(true);
 
   //Sorts data
   useEffect(() => {
@@ -34,6 +35,17 @@ function App() {
   return (
     <>
       <div className='content-wrap'>
+     
+     {isUserInfo &&
+      <div className='website-info'>
+        <div className='web-popup'>
+        <h2>Project preview</h2>
+        <p>This is not a real website</p>
+        <button onClick={()=> setUserInfo(false)}>Close</button>
+        </div>
+      </div>
+      }
+
         {previewIsOpen &&
           <Preview />
         }

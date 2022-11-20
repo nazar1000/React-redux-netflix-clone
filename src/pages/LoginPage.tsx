@@ -2,7 +2,7 @@ import "./loginPage.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import FrontPageBg from "../icons/frontPage-bg.png";
-import netflix_logo from '../icons/netflixLogo.png'
+import Nclone_logo from '../icons/netflixLogo1.png'
 
 function LoginPage() {
   const [form, setForm] = useState({ login: "", password: "", rememberMe: false });
@@ -16,7 +16,7 @@ function LoginPage() {
       <img className="bg-image" src={FrontPageBg} alt="" />
       <div className="content">
         <div className="logo">
-          <img src={netflix_logo} alt="logo" />
+          <img src={Nclone_logo} alt="logo" />
         </div>
 
         <div className="sign-in-div">
@@ -39,7 +39,7 @@ function LoginPage() {
 
           <div className="new-to-netflix-div">
 
-            <span>New to Netflix? <a href="http://localhost:3000/">Sign up Now.</a></span>
+            <span>New to Nclone? <a href="http://localhost:3000/">Sign up Now.</a></span>
             <p>This page is protected by Google reCAPTCHA to ensure you're not bot. <a href="#">Learn more.</a></p>
           </div>
         </div>
